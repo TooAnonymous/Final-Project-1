@@ -52,18 +52,21 @@ class Controller(QMainWindow,Ui_MainWindow):
         self.lineEdit_2.setText('')
         self.total_label.setText('')
 
-    def submit(self):
-        self.total_label.show()
-        num_1= float(self.lineEdit.text())
-        num_2= float(self.lineEdit_2.text())
-        if self.math_label.text() == '+':
-            self.total_label.setText(f'Total: {num_1+num_2:.2f}')
-        elif self.math_label.text() == '-':
-            self.total_label.setText(f'Total: {num_1-num_2:.2f}')
-        elif self.math_label.text() == "*":
-            self.total_label.setText(f'Total: {num_1*num_2:.2f}')
-        elif self.math_label.text() == "/":
-            if self.lineEdit_2.text() == '0':
-                self.total_label.setText("Can not divide by Zero")
-            else:
-                self.total_label.setText(f'Total: {num_1/num_2:.2f}')
+    def submit(self) -> str:
+        try:
+            self.total_label.show()
+            num_1 = float(self.lineEdit.text())
+            num_2 = float(self.lineEdit_2.text())
+            if self.math_label.text() == '+':
+                self.total_label.setText(f'Total: {num_1+num_2:.2f}')
+            elif self.math_label.text() == '-':
+                self.total_label.setText(f'Total: {num_1-num_2:.2f}')
+            elif self.math_label.text() == "*":
+                self.total_label.setText(f'Total: {num_1*num_2:.2f}')
+            elif self.math_label.text() == "/":
+                if self.lineEdit_2.text() == '0':
+                    self.total_label.setText("Can not divide by Zero")
+                else:
+                    self.total_label.setText(f'Total: {num_1/num_2:.2f}')
+        except:
+            self.total_label.setText('Please enter a number')
